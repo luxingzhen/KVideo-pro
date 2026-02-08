@@ -160,7 +160,7 @@ KVideo 内置了简单易用的广告管理系统，帮助站长快速实现流�
 - **功能**：
   - 支持粘贴 HTML 代码（如 Google AdSense、图片链接等）
   - 实时预览和保存
-  - 配置文件自动持久化到 `config/ads.json`
+  - 支持 Cloudflare Pages 无服务器模式（代码生成器模式）
 
 ### 3. 配置持久化
 如果您使用 Docker 部署，建议挂载配置目录以防止重启后广告配置丢失：
@@ -171,6 +171,12 @@ docker run -d -p 3000:3000 \
   -e ACCESS_PASSWORD=your_password \
   --name kvideo kvideo
 ```
+
+### 4. Cloudflare Pages 部署说明
+Cloudflare Pages 不支持文件写入，因此后台页面会自动切换为**配置生成器**模式。
+请将生成的 HTML 代码手动添加到 Cloudflare 的环境变量中：
+- `NEXT_PUBLIC_AD_OVERLAY`
+- `NEXT_PUBLIC_AD_BANNER`
 
 ## 🎨 站点名称自定义配置
 
