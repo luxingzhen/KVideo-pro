@@ -159,9 +159,10 @@ KVideo 支持两种广告配置方式，适用于不同的部署场景。
 适用于 Cloudflare Pages 部署。这种方式最安全，也最符合 Cloudflare 的最佳实践。
 
 1. 进入 Cloudflare 项目设置 -> Environment variables。
-2. 添加以下变量，值为您的 HTML 广告代码：
-   - `NEXT_PUBLIC_AD_OVERLAY` (暂停广告)
-   - `NEXT_PUBLIC_AD_BANNER` (侧边栏广告)
+2. 添加以下变量：
+   - `NEXT_PUBLIC_AD_OVERLAY`: (暂停广告 HTML 代码)
+   - `NEXT_PUBLIC_AD_BANNER`: (侧边栏广告 HTML 代码)
+   - `ADMIN_PASSWORD`: (后台管理页面登录密码)
 3. 重新部署项目即可生效。
 
 #### 方式 B：使用内置管理后台 (代码生成器)

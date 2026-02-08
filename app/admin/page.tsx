@@ -38,19 +38,31 @@ export default function AdminPage() {
     }
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
-    
-    // In this "Config Generator" mode, we just let them in to see the env var names
-    // A real auth check isn't possible client-side against env vars without exposing them
-    setIsAuthenticated(true);
-    sessionStorage.setItem('admin_auth', password);
-    
-    // fetchAds expects a password argument, but in our generator mode we don't really use it for auth
-    // Let's pass the password anyway to satisfy the type signature, or update fetchAds
-    fetchAds(password);
+
+    try {
+      const res = await fetch('/api/admin/auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password })
+      });
+
+      if (res.ok) {
+        setIsAuthenticated(true);
+        sessionStorage.setItem('admin_auth', password);
+        fetchAds(password);
+      } else {
+        const data = await res.json();
+        setError(data.error || '密码错误');
+      }
+    } catch (e) {
+      setError('验证失败，请重试');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const copyToClipboard = (text: string, label: string) => {
@@ -66,18 +78,18 @@ export default function AdminPage() {
           <h1 className="text-2xl font-bold text-white mb-6 text-center">广告管理后台</h1>
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
-              <label className="block text-sm text-white/60 mb-2">管理员密码</label>
+              <label className="block text-sm text-white/60 mb-2">后台管理密码</label>
               <input 
                 type="password" 
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="w-full bg-black/20 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[var(--accent-color)]"
-                placeholder="请输入 ACCESS_PASSWORD"
+                placeholder="请输入 ADMIN_PASSWORD"
               />
             </div>
             {error && <p className="text-red-400 text-sm text-center">{error}</p>}
             <Button 
-              type="submit" 
+              type="submit"
               className="w-full py-3 bg-[var(--accent-color)] hover:bg-[var(--accent-color)]/80 text-white rounded-lg font-medium"
               disabled={isLoading}
             >
