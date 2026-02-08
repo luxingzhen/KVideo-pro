@@ -152,15 +152,26 @@ KVideo 内置了简单易用的广告管理系统，帮助站长快速实现流�
 - **播放器暂停广告 (Overlay)**：当用户暂停视频时，在播放器中央显示的弹窗广告。
 - **详情页侧边栏 (Banner)**：在视频详情页右侧显示的横幅广告（建议尺寸 300x250）。
 
-### 2. 管理后台
-无需修改代码，直接在浏览器中配置广告代码。
+### 2. 设置广告代码 (推荐方式)
+KVideo 支持两种广告配置方式，适用于不同的部署场景。
 
-- **后台地址**：`/admin` (例如 `https://your-site.com/admin`)
-- **登录密码**：与 `ACCESS_PASSWORD` 环境变量一致
-- **功能**：
-  - 支持粘贴 HTML 代码（如 Google AdSense、图片链接等）
-  - 实时预览和保存
-  - 支持 Cloudflare Pages 无服务器模式（代码生成器模式）
+#### 方式 A：使用 Cloudflare 环境变量 (推荐)
+适用于 Cloudflare Pages 部署。这种方式最安全，也最符合 Cloudflare 的最佳实践。
+
+1. 进入 Cloudflare 项目设置 -> Environment variables。
+2. 添加以下变量，值为您的 HTML 广告代码：
+   - `NEXT_PUBLIC_AD_OVERLAY` (暂停广告)
+   - `NEXT_PUBLIC_AD_BANNER` (侧边栏广告)
+3. 重新部署项目即可生效。
+
+#### 方式 B：使用内置管理后台 (代码生成器)
+如果您不熟悉如何编写广告代码，可以使用我们提供的辅助工具：
+
+- **访问地址**：`/admin` (例如 `https://your-site.com/admin`)
+- **功能**：这是一个纯客户端的辅助工具，用于生成和预览广告代码。
+- **操作流程**：在页面中粘贴广告代码 -> 点击"复制" -> 将复制的内容填入 Cloudflare 环境变量。
+
+> **注意**：由于 Cloudflare 是无服务器环境，后台页面无法直接保存修改到服务器。它仅作为配置辅助工具存在。如果您不需要此辅助页面，可以直接忽略。
 
 ### 3. 配置持久化
 如果您使用 Docker 部署，建议挂载配置目录以防止重启后广告配置丢失：
@@ -171,12 +182,6 @@ docker run -d -p 3000:3000 \
   -e ACCESS_PASSWORD=your_password \
   --name kvideo kvideo
 ```
-
-### 4. Cloudflare Pages 部署说明
-Cloudflare Pages 不支持文件写入，因此后台页面会自动切换为**配置生成器**模式。
-请将生成的 HTML 代码手动添加到 Cloudflare 的环境变量中：
-- `NEXT_PUBLIC_AD_OVERLAY`
-- `NEXT_PUBLIC_AD_BANNER`
 
 ## 🎨 站点名称自定义配置
 
