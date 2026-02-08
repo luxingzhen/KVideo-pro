@@ -49,49 +49,17 @@ export default function AdminPage() {
     setIsLoading(true);
     setError('');
     
-    // Validate password by trying to fetch ads
-    fetch('/api/admin/ads', {
-      headers: { 'x-admin-password': password }
-    }).then(res => {
-      if (res.ok) {
-        setIsAuthenticated(true);
-        sessionStorage.setItem('admin_auth', password);
-        return res.json().then(data => setAds(data));
-      } else {
-        setError('密码错误');
-      }
-    }).catch(() => {
-      setError('网络错误');
-    }).finally(() => {
-      setIsLoading(false);
-    });
+    // In this "Config Generator" mode, we just let them in to see the env var names
+    // A real auth check isn't possible client-side against env vars without exposing them
+    setIsAuthenticated(true);
+    sessionStorage.setItem('admin_auth', password);
+    fetchAds();
   };
 
-  const handleSave = async () => {
-    setIsLoading(true);
-    setSuccess('');
-    setError('');
-    
-    try {
-      const res = await fetch('/api/admin/ads', {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/json',
-          'x-admin-password': password || sessionStorage.getItem('admin_auth') || ''
-        },
-        body: JSON.stringify(ads)
-      });
-      
-      if (res.ok) {
-        setSuccess('广告配置已保存！请刷新首页查看效果。');
-      } else {
-        setError('保存失败，请检查密码或重试');
-      }
-    } catch (e) {
-      setError('网络错误');
-    } finally {
-      setIsLoading(false);
-    }
+  const copyToClipboard = (text: string, label: string) => {
+    navigator.clipboard.writeText(text);
+    setSuccess(`已复制 ${label} 到剪贴板`);
+    setTimeout(() => setSuccess(''), 2000);
   };
 
   if (!isAuthenticated) {
@@ -141,54 +109,81 @@ export default function AdminPage() {
         </div>
 
         {success && (
-          <div className="mb-6 p-4 bg-green-500/20 border border-green-500/40 text-green-200 rounded-xl animate-in fade-in slide-in-from-top-2">
+          <div className="fixed top-4 right-4 z-50 p-4 bg-green-500 text-white rounded-xl shadow-lg animate-in fade-in slide-in-from-top-2">
             {success}
           </div>
         )}
 
+        <div className="mb-8 p-4 bg-blue-500/20 border border-blue-500/40 text-blue-200 rounded-xl">
+          <p className="font-bold mb-2">⚠️ Cloudflare Pages 特别说明：</p>
+          <p className="text-sm opacity-80">
+            Cloudflare Pages 是无服务器环境，不支持在线修改文件。
+            <br />
+            请将下方的广告代码复制，并前往 <strong>Cloudflare 控制台 -&gt; Settings -&gt; Environment variables</strong> 添加。
+          </p>
+        </div>
+
         <div className="grid gap-8">
           {/* Overlay Ad Config */}
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              播放暂停广告 (Overlay)
+            <h2 className="text-xl font-semibold mb-4 text-blue-400">
+              1. 播放暂停广告 (Overlay)
             </h2>
-            <p className="text-white/40 text-sm mb-4">
-              显示在播放器暂停时的弹窗广告。支持 HTML、&lt;script&gt; 标签（如 Google AdSense）。
-            </p>
-            <textarea
-              value={ads.overlay}
-              onChange={(e) => setAds({...ads, overlay: e.target.value})}
-              className="w-full h-40 bg-black/20 border border-white/10 rounded-xl p-4 text-sm font-mono text-white/80 focus:outline-none focus:border-[var(--accent-color)]"
-              placeholder="<!-- 粘贴广告代码到这里 -->&#10;<div style='...'>...</div>"
-            />
+            <div className="mb-4">
+              <label className="text-xs text-white/40 block mb-1">变量名 (Key)</label>
+              <div className="flex gap-2">
+                <code className="flex-1 bg-black/40 p-2 rounded text-green-400 font-mono">NEXT_PUBLIC_AD_OVERLAY</code>
+                <Button onClick={() => copyToClipboard('NEXT_PUBLIC_AD_OVERLAY', '变量名')} className="text-xs">复制</Button>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="text-xs text-white/40 block mb-1">当前值 (Value)</label>
+              <div className="relative">
+                <textarea
+                  value={ads.overlay}
+                  onChange={(e) => setAds({...ads, overlay: e.target.value})}
+                  className="w-full h-32 bg-black/20 border border-white/10 rounded-xl p-4 text-sm font-mono text-white/80 focus:outline-none focus:border-[var(--accent-color)]"
+                  placeholder="<div>在此输入 HTML 代码...</div>"
+                />
+                <Button 
+                  onClick={() => copyToClipboard(ads.overlay, '广告代码')} 
+                  className="absolute bottom-4 right-4 text-xs bg-[var(--accent-color)]"
+                >
+                  复制内容
+                </Button>
+              </div>
+            </div>
           </div>
 
           {/* Banner Ad Config */}
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-            <h2 className="text-xl font-semibold mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-purple-500"></span>
-              侧边栏横幅 (Banner)
+            <h2 className="text-xl font-semibold mb-4 text-purple-400">
+              2. 侧边栏横幅 (Banner)
             </h2>
-            <p className="text-white/40 text-sm mb-4">
-              显示在视频详情页右侧。建议尺寸: 300x250 或自适应宽度。
-            </p>
-            <textarea
-              value={ads.banner}
-              onChange={(e) => setAds({...ads, banner: e.target.value})}
-              className="w-full h-40 bg-black/20 border border-white/10 rounded-xl p-4 text-sm font-mono text-white/80 focus:outline-none focus:border-[var(--accent-color)]"
-              placeholder="<!-- 粘贴广告代码到这里 -->"
-            />
-          </div>
-
-          <div className="flex justify-end pt-4">
-            <Button
-              onClick={handleSave}
-              className="px-8 py-3 bg-[var(--accent-color)] hover:bg-[var(--accent-color)]/80 text-white rounded-xl font-bold shadow-lg shadow-[var(--accent-color)]/20 transition-all hover:scale-105 active:scale-95"
-              disabled={isLoading}
-            >
-              {isLoading ? '保存中...' : '保存配置'}
-            </Button>
+            <div className="mb-4">
+              <label className="text-xs text-white/40 block mb-1">变量名 (Key)</label>
+              <div className="flex gap-2">
+                <code className="flex-1 bg-black/40 p-2 rounded text-green-400 font-mono">NEXT_PUBLIC_AD_BANNER</code>
+                <Button onClick={() => copyToClipboard('NEXT_PUBLIC_AD_BANNER', '变量名')} className="text-xs">复制</Button>
+              </div>
+            </div>
+            <div className="mb-4">
+              <label className="text-xs text-white/40 block mb-1">当前值 (Value)</label>
+              <div className="relative">
+                <textarea
+                  value={ads.banner}
+                  onChange={(e) => setAds({...ads, banner: e.target.value})}
+                  className="w-full h-32 bg-black/20 border border-white/10 rounded-xl p-4 text-sm font-mono text-white/80 focus:outline-none focus:border-[var(--accent-color)]"
+                  placeholder="<div>在此输入 HTML 代码...</div>"
+                />
+                <Button 
+                  onClick={() => copyToClipboard(ads.banner, '广告代码')} 
+                  className="absolute bottom-4 right-4 text-xs bg-[var(--accent-color)]"
+                >
+                  复制内容
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
