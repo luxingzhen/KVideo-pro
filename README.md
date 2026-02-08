@@ -179,7 +179,7 @@ docker run -d -p 3000:3000 \
   -e NEXT_PUBLIC_SITE_NAME="我的视频平台" \
   -e NEXT_PUBLIC_SITE_TITLE="我的视频 - 聚合播放平台" \
   -e NEXT_PUBLIC_SITE_DESCRIPTION="专属视频聚合播放平台" \
-  --name kvideo kuekhaoyang/kvideo:latest
+  --name kvideo luxingzhen/kvideo:latest
 ```
 
 **本地开发：**
@@ -206,7 +206,7 @@ NEXT_PUBLIC_SUBSCRIPTION_SOURCES='[{"name":"每日更新源","url":"https://exam
 **Docker 部署：**
 
 ```bash
-docker run -d -p 3000:3000 -e NEXT_PUBLIC_SUBSCRIPTION_SOURCES='[{"name":"MySource","url":"..."}]' --name kvideo kuekhaoyang/kvideo:latest
+docker run -d -p 3000:3000 -e NEXT_PUBLIC_SUBSCRIPTION_SOURCES='[{"name":"MySource","url":"..."}]' --name kvideo luxingzhen/kvideo:latest
 ```
 
 **Vercel 部署：**
@@ -367,8 +367,8 @@ docker run -d -p 3000:3000 -e NEXT_PUBLIC_SUBSCRIPTION_SOURCES='[{"name":"MySour
 
 ```bash
 # 拉取最新版本
-docker pull kuekhaoyang/kvideo:latest
-docker run -d -p 3000:3000 --name kvideo kuekhaoyang/kvideo:latest
+docker pull luxingzhen/kvideo:latest
+docker run -d -p 3000:3000 --name kvideo luxingzhen/kvideo:latest
 ```
 
 应用将在 `http://localhost:3000` 启动。
@@ -428,10 +428,10 @@ docker stop kvideo
 docker rm kvideo
 
 # 拉取最新镜像
-docker pull kuekhaoyang/kvideo:latest
+docker pull luxingzhen/kvideo:latest
 
 # 运行新容器
-docker run -d -p 3000:3000 --name kvideo kuekhaoyang/kvideo:latest
+docker run -d -p 3000:3000 --name kvideo luxingzhen/kvideo:latest
 ```
 
 ### Node.js 部署
