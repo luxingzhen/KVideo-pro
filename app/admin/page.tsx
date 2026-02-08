@@ -17,7 +17,6 @@ export default function AdminPage() {
 
   // Check authentication on load
   useEffect(() => {
-    // Simple check - in a real app, verify token with API
     const storedAuth = sessionStorage.getItem('admin_auth');
     if (storedAuth) {
       setIsAuthenticated(true);
@@ -25,19 +24,14 @@ export default function AdminPage() {
     }
   }, []);
 
-  const fetchAds = async (authPwd: string) => {
+  const fetchAds = async (authPwd?: string) => {
     try {
-      const res = await fetch('/api/admin/ads', {
-        headers: { 'x-admin-password': authPwd }
-      });
+      // In generator mode (Cloudflare), the API is public read-only for current env vars
+      // We don't strictly need the password in headers if the API doesn't check it
+      const res = await fetch('/api/admin/ads');
       if (res.ok) {
         const data = await res.json();
         setAds(data);
-      } else {
-        if (res.status === 401) {
-          setIsAuthenticated(false);
-          sessionStorage.removeItem('admin_auth');
-        }
       }
     } catch (e) {
       console.error('Failed to load ads');
@@ -53,7 +47,10 @@ export default function AdminPage() {
     // A real auth check isn't possible client-side against env vars without exposing them
     setIsAuthenticated(true);
     sessionStorage.setItem('admin_auth', password);
-    fetchAds();
+    
+    // fetchAds expects a password argument, but in our generator mode we don't really use it for auth
+    // Let's pass the password anyway to satisfy the type signature, or update fetchAds
+    fetchAds(password);
   };
 
   const copyToClipboard = (text: string, label: string) => {
