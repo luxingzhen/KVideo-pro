@@ -1,4 +1,4 @@
-[![Upstream Sync](https://github.com/sky06walker/KVideo/actions/workflows/Github_Upstream_Sync.yml/badge.svg)](https://github.com/sky06walker/KVideo/actions/workflows/Github_Upstream_Sync.yml)
+[![Upstream Sync](https://github.com/luxingzhen/KVideo-pro/actions/workflows/Github_Upstream_Sync.yml/badge.svg)](https://github.com/luxingzhen/KVideo-pro/actions/workflows/Github_Upstream_Sync.yml)
 
 # 视频聚合平台 (KVideo)
 
@@ -356,7 +356,7 @@ docker run -d -p 3000:3000 -e NEXT_PUBLIC_SUBSCRIPTION_SOURCES='[{"name":"MySour
 
 #### 选项 1：Vercel 一键部署（推荐）
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/KuekHaoYang/KVideo)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/luxingzhen/KVideo-pro)
 
 1. 点击上方按钮
 2. 连接你的 GitHub 账号
@@ -412,7 +412,7 @@ docker run -d -p 3000:3000 --name kvideo kuekhaoyang/kvideo:latest
 **自己构建镜像：**
 
 ```bash
-git clone https://github.com/KuekHaoYang/KVideo.git
+git clone https://github.com/luxingzhen/KVideo-pro.git
 cd KVideo
 docker build -t kvideo .
 docker run -d -p 3000:3000 --name kvideo kvideo
@@ -428,7 +428,7 @@ docker-compose up -d
 
 ```bash
 # 1. 克隆仓库
-git clone https://github.com/KuekHaoYang/KVideo.git
+git clone https://github.com/luxingzhen/KVideo-pro.git
 cd KVideo
 
 # 2. 安装依赖
@@ -484,7 +484,7 @@ npm start
 **想要参与开发？请查看 [贡献指南](CONTRIBUTING.md) 了解详细的开发规范和流程。**
 
 快速开始：
-1. **报告 Bug**：[提交 Issue](https://github.com/KuekHaoYang/KVideo/issues)
+1. **报告 Bug**：[提交 Issue](https://github.com/luxingzhen/KVideo-pro/issues)
 2. **功能建议**：在 Issues 中提出你的想法
 3. **代码贡献**：Fork → Branch → PR
 4. **文档改进**：直接提交 PR
@@ -504,9 +504,9 @@ npm start
 
 ## 📞 联系方式
 
-- **作者**：[KuekHaoYang](https://github.com/KuekHaoYang)
-- **项目主页**：[https://github.com/KuekHaoYang/KVideo](https://github.com/KuekHaoYang/KVideo)
-- **问题反馈**：[GitHub Issues](https://github.com/KuekHaoYang/KVideo/issues)
+- **作者**：[luxingzhen](https://github.com/luxingzhen)
+- **项目主页**：[https://github.com/luxingzhen/KVideo-pro](https://github.com/luxingzhen/KVideo-pro)
+- **问题反馈**：[GitHub Issues](https://github.com/luxingzhen/KVideo-pro/issues)
 
 
 
@@ -515,11 +515,11 @@ npm start
 ---
 
 <div align="center">
-  Made with ❤️ by <a href="https://github.com/KuekHaoYang">KuekHaoYang</a>
+  Made with ❤️ by <a href="https://github.com/luxingzhen">luxingzhen</a>
   <br>
   如果这个项目对你有帮助，请考虑给一个 ⭐️
 </div>
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=KuekHaoYang/KVideo&type=date&legend=top-left)](https://www.star-history.com/#KuekHaoYang/KVideo&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=luxingzhen/KVideo-pro&type=date&legend=top-left)](https://www.star-history.com/#luxingzhen/KVideo-pro&type=date&legend=top-left)
