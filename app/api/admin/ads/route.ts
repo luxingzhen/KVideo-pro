@@ -1,55 +1,27 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
 
-const CONFIG_FILE = path.join(process.cwd(), 'config', 'ads.json');
-
-// Ensure config dir exists
-const ensureConfigDir = () => {
-  const dir = path.dirname(CONFIG_FILE);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-};
+export const runtime = 'edge';
 
 const getAds = () => {
-  try {
-    if (fs.existsSync(CONFIG_FILE)) {
-      const data = fs.readFileSync(CONFIG_FILE, 'utf-8');
-      return JSON.parse(data);
-    }
-  } catch (e) {
-    // ignore
-  }
-  return { overlay: '', banner: '' };
+  return {
+    overlay: process.env.NEXT_PUBLIC_AD_OVERLAY || '',
+    banner: process.env.NEXT_PUBLIC_AD_BANNER || ''
+  };
 };
 
 export async function GET(request: Request) {
-  // Allow public access for rendering ads
-  // const password = request.headers.get('x-admin-password');
-  // const serverPassword = process.env.ACCESS_PASSWORD;
-
-  // if (serverPassword && password !== serverPassword) {
-  //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  // }
-
+  // Cloudflare Edge Runtime does not support 'fs' module.
+  // We use Environment Variables for configuration.
   return NextResponse.json(getAds());
 }
 
 export async function POST(request: Request) {
-  const password = request.headers.get('x-admin-password');
-  const serverPassword = process.env.ACCESS_PASSWORD;
-
-  if (serverPassword && password !== serverPassword) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  try {
-    const body = await request.json();
-    ensureConfigDir();
-    fs.writeFileSync(CONFIG_FILE, JSON.stringify(body, null, 2));
-    return NextResponse.json({ success: true });
-  } catch (e) {
-    return NextResponse.json({ error: 'Failed to save' }, { status: 500 });
-  }
+  // On Cloudflare Pages, we cannot write to files.
+  // This endpoint is effectively read-only unless we use KV.
+  // The Admin UI has been updated to instruct the user to set Env Vars.
+  
+  return NextResponse.json({ 
+    success: true, 
+    message: "Cloudflare 环境下请在控制台设置环境变量: NEXT_PUBLIC_AD_OVERLAY 和 NEXT_PUBLIC_AD_BANNER" 
+  });
 }
