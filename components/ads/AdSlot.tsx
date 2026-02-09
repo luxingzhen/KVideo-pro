@@ -13,6 +13,28 @@ interface AdSlotProps {
 
 export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
   const [isVisible, setIsVisible] = useState(true);
+  const [adContent, setAdContent] = useState<string>('');
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    const fetchAd = async () => {
+      try {
+        const res = await fetch('/api/admin/ads');
+        if (res.ok) {
+          const data = await res.json();
+          if (type === 'overlay') setAdContent(data.overlay);
+          else if (type === 'banner') setAdContent(data.banner);
+          else if (type === 'player-top') setAdContent(data.playerTop);
+        }
+      } catch (e) {
+        console.error('Failed to load ad');
+      } finally {
+        setIsLoaded(true);
+      }
+    };
+    
+    fetchAd();
+  }, [type]);
 
   if (!isVisible) return null;
   
