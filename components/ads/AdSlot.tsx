@@ -36,6 +36,21 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
     fetchAd();
   }, [type]);
 
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current && adContent) {
+      // Create a document fragment to parse HTML string
+      const range = document.createRange();
+      range.selectNode(containerRef.current);
+      const documentFragment = range.createContextualFragment(adContent);
+      
+      // Clear container and append new content (this executes scripts)
+      containerRef.current.innerHTML = '';
+      containerRef.current.appendChild(documentFragment);
+    }
+  }, [adContent]);
+
   if (!isVisible) return null;
   
   // Define showPlaceholder based on loaded content
@@ -64,15 +79,19 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
           <div className="text-center">
             <p className="text-white/60 text-xs mb-2">广告 / Ad</p>
             {/* Ad Content Placeholder */}
-            <div className="bg-gray-800/50 rounded-lg h-60 flex items-center justify-center border border-white/10">
-              <div className="text-center p-4">
-                <p className="text-white font-medium mb-2">此处展示贴片广告</p>
-                <p className="text-white/40 text-sm">支持 Google AdSense 或自定义图片</p>
-                <button className="mt-4 px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg text-sm hover:opacity-90 transition-opacity">
-                  了解详情
-                </button>
+            {showPlaceholder ? (
+              <div className="bg-gray-800/50 rounded-lg h-60 flex items-center justify-center border border-white/10">
+                <div className="text-center p-4">
+                  <p className="text-white font-medium mb-2">此处展示贴片广告</p>
+                  <p className="text-white/40 text-sm">支持 Google AdSense 或自定义图片</p>
+                  <button className="mt-4 px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg text-sm hover:opacity-90 transition-opacity">
+                    了解详情
+                  </button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div ref={containerRef} className="min-h-[200px] flex items-center justify-center" />
+            )}
           </div>
         </div>
       </div>
@@ -96,7 +115,7 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
               <p className="text-white/80 font-medium">播放器上方横幅 (建议 728x90)</p>
             </div>
           ) : (
-            <div className="w-full" dangerouslySetInnerHTML={{ __html: adContent }} />
+            <div ref={containerRef} className="w-full flex justify-center" />
           )}
         </div>
       </div>
@@ -115,9 +134,13 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
         )}
       </div>
       {/* Banner Ad Content */}
-      <div className="h-24 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg flex items-center justify-center border border-white/5">
-        <p className="text-white/80 font-medium">侧边栏广告位 (300x250)</p>
-      </div>
+      {showPlaceholder ? (
+        <div className="h-24 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-lg flex items-center justify-center border border-white/5">
+          <p className="text-white/80 font-medium">侧边栏广告位 (300x250)</p>
+        </div>
+      ) : (
+        <div ref={containerRef} className="w-full flex justify-center" />
+      )}
     </div>
   );
 }
