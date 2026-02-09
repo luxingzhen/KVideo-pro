@@ -40,14 +40,46 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
 
   useEffect(() => {
     if (containerRef.current && adContent) {
-      // Create a document fragment to parse HTML string
-      const range = document.createRange();
-      range.selectNode(containerRef.current);
-      const documentFragment = range.createContextualFragment(adContent);
-      
-      // Clear container and append new content (this executes scripts)
-      containerRef.current.innerHTML = '';
-      containerRef.current.appendChild(documentFragment);
+      try {
+        const container = containerRef.current;
+        // Reset container
+        container.innerHTML = '';
+        
+        // Create a temp div to parse the HTML string
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = adContent;
+        
+        // Move all child nodes to the container
+        // Handle scripts specially to ensure execution
+        Array.from(tempDiv.childNodes).forEach((node) => {
+          if (node.nodeName === 'SCRIPT') {
+            const oldScript = node as HTMLScriptElement;
+            const newScript = document.createElement('script');
+            
+            // Copy attributes
+            Array.from(oldScript.attributes).forEach(attr => {
+              newScript.setAttribute(attr.name, attr.value);
+            });
+            
+            // Copy content
+            if (oldScript.innerHTML) {
+              newScript.innerHTML = oldScript.innerHTML;
+            }
+            
+            // Append to container
+            container.appendChild(newScript);
+          } else {
+            // Clone non-script nodes
+            container.appendChild(node.cloneNode(true));
+          }
+        });
+      } catch (e) {
+        console.error('Error executing ad scripts:', e);
+        // Fallback to dangerouslySetInnerHTML if manual parsing fails
+        if (containerRef.current) {
+          containerRef.current.innerHTML = adContent;
+        }
+      }
     }
   }, [adContent]);
 
