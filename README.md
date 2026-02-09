@@ -445,6 +445,9 @@ npm start
 ```
 
 > **🔄 自动化部署**：本项目使用 GitHub Actions 自动构建和发布 Docker 镜像。每次代码推送到 main 分支时，会自动构建多架构镜像并推送到 Docker Hub。
+>
+> 镜像名称：`luxingzhen/kvideo`
+
 
 ## 🤝 贡献代码
 
