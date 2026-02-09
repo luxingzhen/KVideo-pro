@@ -184,7 +184,7 @@ export function DesktopVideoPlayer({
           {!isPlaying && !data.isLoading && (
             <AdSlot 
               type="overlay" 
-              className="z-[20]" 
+              className="z-[100]" 
             />
           )}
 

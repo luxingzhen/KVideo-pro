@@ -12,7 +12,8 @@ export default function AdminPage() {
   
   const [ads, setAds] = useState({
     overlay: '',
-    banner: ''
+    banner: '',
+    playerTop: ''
   });
 
   // Check authentication on load

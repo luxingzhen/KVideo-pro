@@ -172,6 +172,9 @@ function PlayerContent() {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Video Player Section */}
             <div className="lg:col-span-2 space-y-6">
+              {/* Player Top Ad */}
+              <AdSlot type="player-top" />
+              
               <VideoPlayer
                 playUrl={playUrl}
                 videoId={videoId || undefined}

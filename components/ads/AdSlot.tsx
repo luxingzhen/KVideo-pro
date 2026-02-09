@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { X } from 'lucide-react';
 
 interface AdSlotProps {
-  type: 'banner' | 'overlay';
+  type: 'banner' | 'overlay' | 'player-top';
   className?: string;
   onClose?: () => void;
   // In a real app, you might pass an ad unit ID here
@@ -49,6 +49,54 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'player-top') {
+    return (
+      <div className={`w-full bg-white/5 border border-white/10 rounded-xl p-4 mb-6 ${className}`}>
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-xs text-white/40">赞助商内容</span>
+          {onClose && (
+            <button onClick={handleClose} className="text-white/40 hover:text-white">
+              <X size={14} />
+            </button>
+          )}
+        </div>
+        <div className="flex items-center justify-center min-h-[90px]">
+          {showPlaceholder ? (
+            <div className="h-24 w-full bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-lg flex items-center justify-center border border-white/5">
+              <p className="text-white/80 font-medium">播放器上方横幅 (建议 728x90)</p>
+            </div>
+          ) : (
+            <div className="w-full" dangerouslySetInnerHTML={{ __html: adContent }} />
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  if (type === 'player-top') {
+    return (
+      <div className={`w-full bg-white/5 border border-white/10 rounded-xl p-4 mb-6 ${className}`}>
+        <div className="flex justify-between items-center mb-2">
+          <span className="text-xs text-white/40">赞助商内容</span>
+          {onClose && (
+            <button onClick={handleClose} className="text-white/40 hover:text-white">
+              <X size={14} />
+            </button>
+          )}
+        </div>
+        <div className="flex items-center justify-center min-h-[90px]">
+          {showPlaceholder ? (
+            <div className="h-24 w-full bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-lg flex items-center justify-center border border-white/5">
+              <p className="text-white/80 font-medium">播放器上方横幅 (建议 728x90)</p>
+            </div>
+          ) : (
+            <div className="w-full" dangerouslySetInnerHTML={{ __html: adContent }} />
+          )}
         </div>
       </div>
     );
