@@ -17,6 +17,7 @@ const nextConfig: NextConfig = {
   },
 
   images: {
+    unoptimized: true, // Required for Cloudflare Pages (free tier)
     remotePatterns: [
       // Douban images
       {
