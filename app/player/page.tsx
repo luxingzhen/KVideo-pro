@@ -2,6 +2,8 @@ import { Metadata } from 'next';
 import PlayerClient from './PlayerClient';
 import { siteConfig } from '@/lib/config/site-config';
 
+export const runtime = 'edge';
+
 interface Props {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
