@@ -63,10 +63,34 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.title,
+  title: {
+    default: siteConfig.title,
+    template: `%s - ${siteConfig.name}`,
+  },
   description: siteConfig.description,
+  keywords: ["免费电影", "在线观看", "高清视频", "KVideo", "视频聚合", "美剧", "日剧", "韩剧", "动漫", "免费追剧"],
   icons: {
     icon: '/icon.png',
+    apple: '/icon.png',
+  },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'black-translucent',
+    title: siteConfig.name,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'zh_CN',
+    url: process.env.NEXT_PUBLIC_SITE_URL || 'https://kvideo.app',
+    title: siteConfig.title,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: siteConfig.title,
+    description: siteConfig.description,
   },
 };
 
@@ -78,17 +102,8 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <head>
-        {/* PWA Manifest */}
-        <link rel="manifest" href="/manifest.json" />
-        {/* Apple PWA Support */}
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="KVideo" />
-        <link rel="apple-touch-icon" href="/icon.png" />
-        {/* Theme Color (for browser address bar) */}
         <meta name="theme-color" content="#000000" />
-        {/* Mobile viewport */}
-        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, viewport-fit=cover" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
