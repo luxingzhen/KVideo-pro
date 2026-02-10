@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { Icons } from '@/components/ui/Icon';
 import { siteConfig } from '@/lib/config/site-config';
+import { useUIStore } from '@/lib/store/ui-store';
 
 interface NavbarProps {
     onReset: () => void;
@@ -11,6 +12,7 @@ interface NavbarProps {
 
 export function Navbar({ onReset, isPremiumMode = false }: NavbarProps) {
     const settingsHref = isPremiumMode ? '/premium/settings' : '/settings';
+    const { toggleFavorites, toggleHistory } = useUIStore();
 
     return (
         <nav className="sticky top-0 z-[2000] pt-4 pb-2" style={{
@@ -43,6 +45,22 @@ export function Navbar({ onReset, isPremiumMode = false }: NavbarProps) {
                         </Link>
 
                         <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+                            <button
+                                onClick={toggleFavorites}
+                                className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-[var(--radius-full)] bg-[var(--glass-bg)] border border-[var(--glass-border)] text-[var(--text-color)] hover:bg-[color-mix(in_srgb,var(--accent-color)_10%,transparent)] transition-all duration-200 cursor-pointer"
+                                aria-label="打开收藏夹"
+                            >
+                                <Icons.Heart size={20} />
+                            </button>
+
+                            <button
+                                onClick={toggleHistory}
+                                className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center rounded-[var(--radius-full)] bg-[var(--glass-bg)] border border-[var(--glass-border)] text-[var(--text-color)] hover:bg-[color-mix(in_srgb,var(--accent-color)_10%,transparent)] transition-all duration-200 cursor-pointer"
+                                aria-label="打开观看历史"
+                            >
+                                <Icons.History size={20} />
+                            </button>
+
                             <a
                                 href="https://github.com/KuekHaoYang/KVideo"
                                 target="_blank"

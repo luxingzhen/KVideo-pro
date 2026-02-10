@@ -125,11 +125,6 @@ export const VideoCard = memo<VideoCardProps>(({
                             }}
                         >
                             <div className="absolute bottom-0 left-0 right-0 p-3">
-                                {isActive && (
-                                    <div className="lg:hidden text-white/90 text-xs mb-2 font-medium">
-                                        再次点击播放 →
-                                    </div>
-                                )}
                                 {video.type_name && (
                                     <Badge variant="secondary" className="text-xs mb-2">
                                         {video.type_name}

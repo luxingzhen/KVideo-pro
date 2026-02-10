@@ -180,14 +180,6 @@ export function DesktopVideoPlayer({
             {...({ 'webkit-playsinline': 'true' } as any)} // Legacy iOS support
           />
 
-          {/* Pause Ad Overlay */}
-          {!isPlaying && !data.isLoading && (
-            <AdSlot 
-              type="overlay" 
-              className="z-[100]" 
-            />
-          )}
-
           <DesktopOverlayWrapper
             data={data}
             actions={actions}

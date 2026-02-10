@@ -119,18 +119,7 @@ export const VideoGrid = memo(function VideoGrid({
   }, []);
 
   // Memoize the click handler
-  const handleCardClick = useCallback((e: React.MouseEvent, videoId: string, videoUrl: string) => {
-    const isMobile = window.innerWidth < 1024;
-
-    if (isMobile) {
-      if (activeCardId === videoId) {
-        window.location.href = videoUrl;
-      } else {
-        e.preventDefault();
-        setActiveCardId(videoId);
-      }
-    }
-  }, [activeCardId]);
+  const handleCardClick = useCallback((e: React.MouseEvent, videoId: string, videoUrl: string) => {}, []);
 
   // Normal mode items
   const videoItems = useMemo(() => {

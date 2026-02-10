@@ -166,11 +166,6 @@ export const VideoGroupCard = memo<VideoGroupCardProps>(({
                             }}
                         >
                             <div className="absolute bottom-0 left-0 right-0 p-3">
-                                {isActive && (
-                                    <div className="lg:hidden text-white/90 text-xs mb-2 font-medium">
-                                        再次点击播放 →
-                                    </div>
-                                )}
                                 {representative.type_name && (
                                     <Badge variant="secondary" className="text-xs mb-2">
                                         {representative.type_name}
