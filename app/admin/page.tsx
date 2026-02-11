@@ -11,7 +11,6 @@ export default function AdminPage() {
   const [success, setSuccess] = useState('');
   
   const [ads, setAds] = useState({
-    overlay: '',
     banner: '',
     playerTop: ''
   });
@@ -134,41 +133,10 @@ export default function AdminPage() {
         </div>
 
         <div className="grid gap-8">
-          {/* Overlay Ad Config */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
-            <h2 className="text-xl font-semibold mb-4 text-blue-400">
-              1. 播放暂停广告 (Overlay)
-            </h2>
-            <div className="mb-4">
-              <label className="text-xs text-white/40 block mb-1">变量名 (Key)</label>
-              <div className="flex gap-2">
-                <code className="flex-1 bg-black/40 p-2 rounded text-green-400 font-mono">NEXT_PUBLIC_AD_OVERLAY</code>
-                <Button onClick={() => copyToClipboard('NEXT_PUBLIC_AD_OVERLAY', '变量名')} className="text-xs">复制</Button>
-              </div>
-            </div>
-            <div className="mb-4">
-              <label className="text-xs text-white/40 block mb-1">当前值 (Value)</label>
-              <div className="relative">
-                <textarea
-                  value={ads.overlay}
-                  onChange={(e) => setAds({...ads, overlay: e.target.value})}
-                  className="w-full h-32 bg-black/20 border border-white/10 rounded-xl p-4 text-sm font-mono text-white/80 focus:outline-none focus:border-[var(--accent-color)]"
-                  placeholder="<div>在此输入 HTML 代码...</div>"
-                />
-                <Button 
-                  onClick={() => copyToClipboard(ads.overlay, '广告代码')} 
-                  className="absolute bottom-4 right-4 text-xs bg-[var(--accent-color)]"
-                >
-                  复制内容
-                </Button>
-              </div>
-            </div>
-          </div>
-
           {/* Banner Ad Config */}
           <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-semibold mb-4 text-purple-400">
-              2. 侧边栏横幅 (Banner)
+              1. 侧边栏横幅 (Banner)
             </h2>
             <div className="mb-4">
               <label className="text-xs text-white/40 block mb-1">变量名 (Key)</label>

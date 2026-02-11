@@ -4,7 +4,6 @@ export const runtime = 'edge';
 
 const getAds = () => {
   return {
-    overlay: process.env.NEXT_PUBLIC_AD_OVERLAY || '',
     banner: process.env.NEXT_PUBLIC_AD_BANNER || '',
     playerTop: process.env.NEXT_PUBLIC_AD_PLAYER_TOP || ''
   };
@@ -23,6 +22,6 @@ export async function POST(request: Request) {
   
   return NextResponse.json({ 
     success: true, 
-    message: "Cloudflare 环境下请在控制台设置环境变量: NEXT_PUBLIC_AD_OVERLAY, NEXT_PUBLIC_AD_BANNER, NEXT_PUBLIC_AD_PLAYER_TOP" 
+    message: "Cloudflare 环境下请在控制台设置环境变量: NEXT_PUBLIC_AD_BANNER, NEXT_PUBLIC_AD_PLAYER_TOP" 
   });
 }

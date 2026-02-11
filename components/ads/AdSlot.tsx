@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
 interface AdSlotProps {
-  type: 'banner' | 'overlay' | 'player-top';
+  type: 'banner' | 'player-top';
   className?: string;
   onClose?: () => void;
   // In a real app, you might pass an ad unit ID here
@@ -22,8 +22,7 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
         const res = await fetch('/api/admin/ads');
         if (res.ok) {
           const data = await res.json();
-          if (type === 'overlay') setAdContent(data.overlay);
-          else if (type === 'banner') setAdContent(data.banner);
+          if (type === 'banner') setAdContent(data.banner);
           else if (type === 'player-top') setAdContent(data.playerTop);
         }
       } catch (e) {
@@ -49,9 +48,8 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
         const tempDiv = document.createElement('div');
         tempDiv.innerHTML = adContent;
         
-        // Move all child nodes to the container
-        // Handle scripts specially to ensure execution
-        Array.from(tempDiv.childNodes).forEach((node) => {
+        // Helper function to recursively reconstruct scripts
+        const reconstructScripts = (node: Node): Node => {
           if (node.nodeName === 'SCRIPT') {
             const oldScript = node as HTMLScriptElement;
             const newScript = document.createElement('script');
@@ -65,13 +63,23 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
             if (oldScript.innerHTML) {
               newScript.innerHTML = oldScript.innerHTML;
             }
-            
-            // Append to container
-            container.appendChild(newScript);
-          } else {
-            // Clone non-script nodes
-            container.appendChild(node.cloneNode(true));
+            return newScript;
           }
+          
+          // Clone the node
+          const clonedNode = node.cloneNode(false);
+          
+          // Process children recursively
+          Array.from(node.childNodes).forEach(child => {
+            clonedNode.appendChild(reconstructScripts(child));
+          });
+          
+          return clonedNode;
+        };
+
+        // Process and append all child nodes
+        Array.from(tempDiv.childNodes).forEach((node) => {
+          container.appendChild(reconstructScripts(node));
         });
       } catch (e) {
         console.error('Error executing ad scripts:', e);
@@ -94,41 +102,6 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
     onClose?.();
   };
 
-  if (type === 'overlay') {
-    return (
-      <div 
-        className={`absolute inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-200 ${className}`}
-        onClick={(e) => e.stopPropagation()} // Prevent click from pausing/playing video
-      >
-        <div className="relative bg-white/10 border border-white/20 p-4 rounded-xl shadow-2xl max-w-md w-full mx-4">
-          <button 
-            onClick={handleClose}
-            className="absolute -top-3 -right-3 bg-red-500 hover:bg-red-600 text-white rounded-full p-1 shadow-lg transition-transform hover:scale-110"
-          >
-            <X size={20} />
-          </button>
-          
-          <div className="text-center">
-            <p className="text-white/60 text-xs mb-2">广告 / Ad</p>
-            {/* Ad Content Placeholder */}
-            {showPlaceholder ? (
-              <div className="bg-gray-800/50 rounded-lg h-60 flex items-center justify-center border border-white/10">
-                <div className="text-center p-4">
-                  <p className="text-white font-medium mb-2">此处展示贴片广告</p>
-                  <p className="text-white/40 text-sm">支持 Google AdSense 或自定义图片</p>
-                  <button className="mt-4 px-4 py-2 bg-[var(--accent-color)] text-white rounded-lg text-sm hover:opacity-90 transition-opacity">
-                    了解详情
-                  </button>
-                </div>
-              </div>
-            ) : (
-              <div ref={containerRef} className="min-h-[200px] flex items-center justify-center" />
-            )}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   if (type === 'player-top') {
     return (
