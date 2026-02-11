@@ -5332,3 +5332,504 @@ Proxy error: Error: fetch failed
   
 }
  GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluxingzhen%2FKVideo-pro%2Frefs%2Fheads%2Fmain%2Ftest.json 500 in 6.6s
+ GET /player?id=69790&source=ruyi&title=%E5%93%88%E5%A7%86%E5%A5%88%E7%89%B9 200 in 358ms
+ GET /player?id=64724&source=ruyi&title=%E6%A1%91%E6%8B%BF2025 200 in 362ms
+✓ Compiled in 0ms
+ GET /player?id=64724&source=ruyi&title=%E6%A1%91%E6%8B%BF2025 200 in 95ms
+ GET /player?id=69790&source=ruyi&title=%E5%93%88%E5%A7%86%E5%A5%88%E7%89%B9 200 in 48ms
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /api/config 200 in 6ms
+ GET /api/config 200 in 4ms
+ POST /api/detail 200 in 559ms
+ GET /api/admin/ads 200 in 6ms
+ GET /api/admin/ads 200 in 3ms
+ GET /api/admin/ads 200 in 3ms
+ POST /api/detail 200 in 603ms
+ GET /api/admin/ads 200 in 5ms
+ POST /api/detail 200 in 401ms
+ POST /api/detail 200 in 414ms
+ GET /api/admin/ads 200 in 3ms
+ GET /api/admin/ads 200 in 4ms
+ GET /api/admin/ads 200 in 4ms
+ GET /api/admin/ads 200 in 3ms
+ GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Frapier15sapper%2Few%2Frefs%2Fheads%2Fmain%2Ftest.json 200 in 726ms
+ GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluxingzhen%2FKVideo-pro%2Frefs%2Fheads%2Fmain%2Ftest.json 200 in 1973ms
+ GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluxingzhen%2FKVideo-pro%2Frefs%2Fheads%2Fmain%2Ftest.json 200 in 2.2s
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /?q=%E6%A1%91%E6%8B%BF 200 in 28ms (compile: 13ms, render: 14ms)
+ GET /api/douban/tags?type=movie 200 in 6ms
+ GET /api/douban/recommend?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=20&page_start=0 200 in 9ms
+ GET /api/douban/tags?type=movie 200 in 3ms
+ GET /api/douban/recommend?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=20&page_start=0 200 in 6ms
+✓ Compiled in 59ms
+✓ Compiled in 62ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 39ms
+ GET /player?id=69790&source=ruyi&title=%E5%93%88%E5%A7%86%E5%A5%88%E7%89%B9 200 in 69ms
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /api/config 200 in 3ms
+ POST /api/detail 200 in 674ms
+ POST /api/detail 200 in 675ms
+ POST /api/detail 200 in 621ms
+ POST /api/detail 200 in 639ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 44ms
+ GET /player?id=69790&source=ruyi&title=%E5%93%88%E5%A7%86%E5%A5%88%E7%89%B9 200 in 67ms
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /api/config 200 in 3ms
+ POST /api/detail 200 in 408ms
+ POST /api/detail 200 in 417ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 45ms
+ GET /player?id=69790&source=ruyi&title=%E5%93%88%E5%A7%86%E5%A5%88%E7%89%B9 200 in 65ms
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /api/config 200 in 3ms
+ POST /api/detail 200 in 411ms
+ POST /api/detail 200 in 424ms
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+✓ Compiled in 97ms
+ GET /player?id=69790&source=ruyi&title=%E5%93%88%E5%A7%86%E5%A5%88%E7%89%B9 200 in 65ms
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /api/config 200 in 4ms
+ POST /api/detail 200 in 597ms
+ POST /api/detail 200 in 613ms
+✓ Compiled in 42ms
+ POST /api/detail 200 in 414ms
+⚠ Timeout on attempt 1, retrying...
+⚠ Timeout on attempt 2, retrying...
+⚠ Fetch error on attempt 3, retrying... Error: fetch failed
+    at context.fetch (/home/lu/下载/KVideo-main/node_modules/next/dist/server/web/sandbox/context.js:321:60)
+    at dedupeFetch (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:13403:20)
+    at doOriginalFetch (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:14354:24)
+    at /home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:14633:24
+    at async fetchWithRetry (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/[root-of-the-server]__ef190277._.js:115:24)
+    at async GET (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/[root-of-the-server]__ef190277._.js:206:26)
+    at async AppRouteRouteModule.do (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:17103:23)
+    at async AppRouteRouteModule.handle (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:17194:26)
+    at async EdgeRouteModuleWrapper.handler (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:11153:19)
+    at async adapter (/home/lu/下载/KVideo-main/.next/dev/server/edge/chunks/node_modules_next_dist_esm_225719d4._.js:4835:16)
+    at async /home/lu/下载/KVideo-main/node_modules/next/dist/server/web/sandbox/sandbox.js:112:26
+    at async runWithTaggedErrors (/home/lu/下载/KVideo-main/node_modules/next/dist/server/web/sandbox/sandbox.js:109:9)
+    at async DevServer.runEdgeFunction (/home/lu/下载/KVideo-main/node_modules/next/dist/server/next-server.js:1352:24)
+    at async NextNodeServer.handleCatchallRenderRequest (/home/lu/下载/KVideo-main/node_modules/next/dist/server/next-server.js:362:41)
+    at async DevServer.handleRequestImpl (/home/lu/下载/KVideo-main/node_modules/next/dist/server/base-server.js:929:17)
+    at async /home/lu/下载/KVideo-main/node_modules/next/dist/server/dev/next-dev-server.js:387:20
+    at async Span.traceAsyncFn (/home/lu/下载/KVideo-main/node_modules/next/dist/trace/trace.js:157:20)
+    at async DevServer.handleRequest (/home/lu/下载/KVideo-main/node_modules/next/dist/server/dev/next-dev-server.js:383:24)
+    at async invokeRender (/home/lu/下载/KVideo-main/node_modules/next/dist/server/lib/router-server.js:248:21)
+    at async handleRequest (/home/lu/下载/KVideo-main/node_modules/next/dist/server/lib/router-server.js:447:24)
+    at async requestHandlerImpl (/home/lu/下载/KVideo-main/node_modules/next/dist/server/lib/router-server.js:496:13)
+    at async Server.requestListener (/home/lu/下载/KVideo-main/node_modules/next/dist/server/lib/start-server.js:226:13) {
+  
+}
+⚠ Timeout on attempt 4, retrying...
+⚠ Timeout on attempt 5, retrying...
+Proxy error: Error: Failed after 5 attempts: AbortError: This operation was aborted
+    at fetchWithRetry (lib/utils/fetch-with-retry.ts:90:15)
+    at async GET (app/api/proxy/route.ts:28:26)
+  88 |     // Only throw if we truly failed to get any response
+  89 |     if (!response) {
+> 90 |         throw new Error(`Failed after ${MAX_RETRIES} attempts: ${lastError}`);
+     |               ^
+  91 |     }
+  92 |
+  93 |     // Return the response even if it's an error status (403, 404, etc.) {
+  
+}
+ GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluxingzhen%2FKVideo-pro%2Frefs%2Fheads%2Fmain%2Ftest.json 500 in 2.2min
+✓ Compiled in 75ms
+✓ Compiled in 35ms
+✓ Compiled in 41ms
+✓ Compiled in 41ms
+✓ Compiled in 37ms
+ POST /api/detail 200 in 434ms
+✓ Compiled in 59ms
+ POST /api/detail 200 in 401ms
+✓ Compiled in 39ms
+ POST /api/detail 200 in 200ms
+✓ Compiled in 51ms
+ POST /api/detail 200 in 1501ms
+✓ Compiled in 41ms
+ POST /api/detail 200 in 1620ms
+✓ Compiled in 78ms
+✓ Compiled in 40ms
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /?q=%E7%96%AF%E7%8B%82%E5%8A%A8%E7%89%A9%E5%9F%8E2 200 in 86ms (compile: 11ms, render: 75ms)
+⚠ ./app/layout.tsx:27:21
+Ecmascript file had an error
+[0m [90m 25 |[39m       [36mconst[39m filePath [33m=[39m path[33m.[39misAbsolute(keywordsFile)
+ [90m 26 |[39m         [33m?[39m keywordsFile
+[31m[1m>[22m[39m[90m 27 |[39m         [33m:[39m path[33m.[39mjoin(process[33m.[39mcwd()[33m,[39m keywordsFile)[33m;[39m
+ [90m    |[39m                     [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 28 |[39m
+ [90m 29 |[39m       [36mtry[39m {
+ [90m 30 |[39m         [36mconst[39m content [33m=[39m [36mawait[39m fs[33m.[39mpromises[33m.[39mreadFile(filePath[33m,[39m [32m'utf-8'[39m)[33m;[39m[0m
+
+A Node.js API is used (process.cwd at line: 27) which is not supported in the Edge Runtime.
+Learn more: https://nextjs.org/docs/api-reference/edge-runtime
+
+
+⚠ ./app/layout.tsx:13:1
+Ecmascript file had an error
+[0m [90m 11 |[39m [36mimport[39m { [33mBackToTop[39m } [36mfrom[39m [32m"@/components/ui/BackToTop"[39m[33m;[39m
+ [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m[0m
+
+A Node.js module is loaded ('fs' at line 13) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+⚠ ./app/layout.tsx:14:1
+Ecmascript file had an error
+[0m [90m 12 |[39m [36mimport[39m { [33mScrollPositionManager[39m } [36mfrom[39m [32m"@/components/ScrollPositionManager"[39m[33m;[39m
+ [90m 13 |[39m [36mimport[39m fs [36mfrom[39m [32m'fs'[39m[33m;[39m
+[31m[1m>[22m[39m[90m 14 |[39m [36mimport[39m path [36mfrom[39m [32m'path'[39m[33m;[39m
+ [90m    |[39m [31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m[31m[1m^[22m[39m
+ [90m 15 |[39m
+ [90m 16 |[39m [90m// Server Component specifically for reading env/file (async for best practices)[39m
+ [90m 17 |[39m [36masync[39m [36mfunction[39m [33mAdKeywordsWrapper[39m() {[0m
+
+A Node.js module is loaded ('path' at line 14) which is not supported in the Edge Runtime.
+Learn More: https://nextjs.org/docs/messages/node-module-in-edge-runtime
+
+
+ GET /api/config 200 in 6ms
+ GET /api/douban/tags?type=movie 200 in 8ms
+ GET /api/douban/recommend?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=20&page_start=0 200 in 6ms
+ GET /api/douban/tags?type=movie 200 in 3ms
+ GET /api/douban/recommend?type=movie&tag=%E7%83%AD%E9%97%A8&page_limit=20&page_start=0 200 in 6ms
+ GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluxingzhen%2FKVideo-pro%2Frefs%2Fheads%2Fmain%2Ftest.json 200 in 1412ms
+ GET /api/proxy?url=https%3A%2F%2Fraw.githubusercontent.com%2Fluxingzhen%2FKVideo-pro%2Frefs%2Fheads%2Fmain%2Ftest.json 200 in 2.6s

@@ -15,7 +15,10 @@ import { FavoriteButton } from '@/components/favorites/FavoriteButton';
 import { PlayerNavbar } from '@/components/player/PlayerNavbar';
 import { settingsStore } from '@/lib/store/settings-store';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
-import { AdSlot } from '@/components/ads/AdSlot';
+import { CommunityCard } from '@/components/community/CommunityCard';
+import { RetentionPopup } from '@/components/community/RetentionPopup';
+import { useFavorites } from '@/lib/store/favorites-store';
+import { UtilityIcons } from '@/components/ui/icons/utility-icons';
 import Image from 'next/image';
 
 function PlayerContent() {
@@ -23,6 +26,7 @@ function PlayerContent() {
   const router = useRouter();
   const isPremium = searchParams.get('premium') === '1';
   const { addToHistory } = useHistory(isPremium);
+  const { isFavorite, addFavorite } = useFavorites(isPremium);
 
   const videoId = searchParams.get('id');
   const source = searchParams.get('source');
@@ -34,6 +38,9 @@ function PlayerContent() {
   const [isReversed, setIsReversed] = useState(() =>
     typeof window !== 'undefined' ? settingsStore.getSettings().episodeReverseOrder : false
   );
+
+  const [showRetentionPopup, setShowRetentionPopup] = useState(false);
+  const [hasShownRetentionPopup, setHasShownRetentionPopup] = useState(false);
 
   // Mobile tab state
   const [activeTab, setActiveTab] = useState<'episodes' | 'info' | 'sources'>('episodes');
@@ -151,10 +158,36 @@ function PlayerContent() {
     }
   }, [videoData, currentEpisode, isReversed, router, searchParams]); // handleEpisodeClick is not memoized, but uses stable hooks setters. wait, handleEpisodeClick is inline too!
 
+  const handleTimeUpdate = useCallback((currentTime: number) => {
+    if (currentTime > 300 && !hasShownRetentionPopup && videoId && source) {
+      setShowRetentionPopup(true);
+      setHasShownRetentionPopup(true);
+    }
+  }, [hasShownRetentionPopup, videoId, source]);
+
+  const handleQuickFavorite = useCallback(() => {
+    if (videoData && videoId && source) {
+      addFavorite({
+        videoId,
+        source,
+        title: videoData.vod_name || title || '未知视频',
+        poster: videoData.vod_pic,
+        type: videoData.type_name,
+        year: videoData.vod_year,
+      });
+    }
+  }, [videoData, videoId, source, title, addFavorite]);
+
   return (
     <div className="min-h-screen bg-[var(--bg-color)]">
       {/* Glass Navbar */}
       <PlayerNavbar isPremium={isPremium} />
+
+      <RetentionPopup
+        isOpen={showRetentionPopup}
+        onClose={() => setShowRetentionPopup(false)}
+        onFavorite={handleQuickFavorite}
+      />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
         {loading ? (
@@ -172,9 +205,6 @@ function PlayerContent() {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Video Player Section */}
             <div className="lg:col-span-2 space-y-6">
-              {/* Player Top Ad */}
-              <AdSlot type="player-top" />
-              
               <VideoPlayer
                 playUrl={playUrl}
                 videoId={videoId || undefined}
@@ -184,6 +214,7 @@ function PlayerContent() {
                 onNextEpisode={handleNextEpisode}
                 isReversed={isReversed}
                 isPremium={isPremium}
+                onTimeUpdate={handleTimeUpdate}
               />
               <div className="hidden lg:block">
                 <VideoMetadata
@@ -193,22 +224,87 @@ function PlayerContent() {
                 />
               </div>
 
-              {/* Favorite Button for current video */}
               {videoData && videoId && (
-                <div className="flex items-center gap-3 mt-4">
-                  <FavoriteButton
-                    videoId={videoId}
-                    source={source}
-                    title={videoData.vod_name || title || '未知视频'}
-                    poster={videoData.vod_pic}
-                    type={videoData.type_name}
-                    year={videoData.vod_year}
-                    size={20}
-                    isPremium={isPremium}
-                  />
-                  <span className="text-sm text-[var(--text-color-secondary)]">
-                    收藏这个视频
-                  </span>
+                <div className="flex flex-wrap items-center gap-6 mt-4">
+                  <div className="flex items-center gap-3">
+                    <FavoriteButton
+                      videoId={videoId}
+                      source={source}
+                      title={videoData.vod_name || title || '未知视频'}
+                      poster={videoData.vod_pic}
+                      type={videoData.type_name}
+                      year={videoData.vod_year}
+                      size={20}
+                      isPremium={isPremium}
+                    />
+                    <span className="text-sm text-[var(--text-color-secondary)]">
+                      收藏这个视频
+                    </span>
+                  </div>
+
+                  <a
+                    href="https://t.me/TG_yingsh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 px-4 py-2 bg-[var(--card-bg)] hover:bg-[var(--hover-color)] border border-[var(--border-color)] rounded-lg transition-all duration-200 group"
+                  >
+                    <svg 
+                      width="18" 
+                      height="18" 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      stroke="currentColor" 
+                      strokeWidth="2" 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round"
+                      className="text-[var(--accent-color)] group-hover:scale-110 transition-transform"
+                    >
+                      <path d="M22 2L11 13" />
+                      <path d="M22 2L15 22L11 13L2 9L22 2Z" />
+                    </svg>
+                    <span className="text-sm font-medium text-[var(--text-color)]">
+                      TG群
+                    </span>
+                  </a>
+
+                  <button
+                    onClick={async () => {
+                        const qqGroup = "676722260";
+                        let success = false;
+                        try {
+                            if (navigator.clipboard && window.isSecureContext) {
+                                await navigator.clipboard.writeText(qqGroup);
+                                success = true;
+                            } else {
+                                const textArea = document.createElement("textarea");
+                                textArea.value = qqGroup;
+                                textArea.style.position = "fixed";
+                                textArea.style.left = "-9999px";
+                                textArea.style.top = "0";
+                                document.body.appendChild(textArea);
+                                textArea.focus();
+                                textArea.select();
+                                success = document.execCommand('copy');
+                                document.body.removeChild(textArea);
+                            }
+                        } catch (err) {
+                            console.error('Copy failed', err);
+                            success = false;
+                        }
+
+                        if (success) {
+                            alert(`QQ群号 ${qqGroup} 已复制到剪贴板`);
+                        } else {
+                            alert(`QQ群号: ${qqGroup}`);
+                        }
+                    }}
+                    className="flex items-center gap-2 px-4 py-2 bg-[var(--card-bg)] hover:bg-[var(--hover-color)] border border-[var(--border-color)] rounded-lg transition-all duration-200 group"
+                  >
+                    <UtilityIcons.QQ size={18} className="text-[var(--accent-color)] group-hover:scale-110 transition-transform" />
+                    <span className="text-sm font-medium text-[var(--text-color)]">
+                      QQ群
+                    </span>
+                  </button>
                 </div>
               )}
             </div>
@@ -216,8 +312,7 @@ function PlayerContent() {
             {/* Sidebar with sticky wrapper */}
             <div className="lg:col-span-1">
               <div className="lg:sticky lg:top-32 space-y-6">
-                {/* Banner Ad */}
-                <AdSlot type="banner" />
+                <CommunityCard />
 
                 {/* Mobile Tabs */}
                 {groupedSources.length > 0 && (

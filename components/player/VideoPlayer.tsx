@@ -19,6 +19,7 @@ interface VideoPlayerProps {
   onNextEpisode?: () => void;
   isReversed?: boolean;
   isPremium?: boolean;
+  onTimeUpdate?: (currentTime: number) => void;
 }
 
 export function VideoPlayer({
@@ -29,7 +30,8 @@ export function VideoPlayer({
   totalEpisodes,
   onNextEpisode,
   isReversed = false,
-  isPremium = false
+  isPremium = false,
+  onTimeUpdate
 }: VideoPlayerProps) {
   const [videoError, setVideoError] = useState<string>('');
   const [useProxy, setUseProxy] = useState(false);
@@ -132,7 +134,11 @@ export function VideoPlayer({
       lastSaveTimeRef.current = now;
       saveProgress(currentTime, duration);
     }
-  }, [videoId, playUrl, saveProgress]);
+    
+    if (onTimeUpdate) {
+      onTimeUpdate(currentTime);
+    }
+  }, [videoId, playUrl, saveProgress, onTimeUpdate]);
 
   // Save on page leave/refresh
   useEffect(() => {
