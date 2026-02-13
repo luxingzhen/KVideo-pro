@@ -1,7 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+// @ts-ignore
+import postscribe from 'postscribe';
 
 interface AdSlotProps {
   type: 'banner' | 'player-top';
@@ -35,32 +37,26 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
     fetchAd();
   }, [type]);
 
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const iframeRef = React.useRef<HTMLIFrameElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (iframeRef.current && adContent) {
+    if (containerRef.current && adContent) {
       try {
-        const doc = iframeRef.current.contentDocument || iframeRef.current.contentWindow?.document;
-        if (doc) {
-          doc.open();
-          doc.write(`
-            <!DOCTYPE html>
-            <html>
-              <head>
-                <meta name="referrer" content="unsafe-url">
-                <style>
-                  body { margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; background: transparent; }
-                  img { max-width: 100%; height: auto; }
-                </style>
-              </head>
-              <body>${adContent}</body>
-            </html>
-          `);
-          doc.close();
-        }
+        // Clear previous content
+        containerRef.current.innerHTML = '';
+        
+        // Use postscribe to safely inject ad content (supports document.write)
+        postscribe(containerRef.current, adContent, {
+          done: () => {
+            // Optional: callback when scripts finish loading
+          }
+        });
       } catch (e) {
-        console.error('Error writing to ad iframe:', e);
+        console.error('Error executing ad scripts with postscribe:', e);
+        // Fallback
+        if (containerRef.current) {
+          containerRef.current.innerHTML = adContent;
+        }
       }
     }
   }, [adContent]);
@@ -97,14 +93,7 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
               <p className="text-white/80 font-medium">播放器上方横幅 (建议 728x90)</p>
             </div>
           ) : (
-            <div className="w-full flex justify-center h-[90px] relative">
-               <iframe 
-                 ref={iframeRef} 
-                 title="Ad"
-                 className="w-full h-full border-0"
-                 scrolling="no"
-               />
-            </div>
+            <div ref={containerRef} className="w-full flex justify-center h-[90px] relative" />
           )}
         </div>
       </div>
@@ -128,14 +117,7 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
           <p className="text-white/80 font-medium">侧边栏广告位 (300x250)</p>
         </div>
       ) : (
-        <div className="w-full flex justify-center h-[250px] relative">
-           <iframe 
-             ref={iframeRef} 
-             title="Ad"
-             className="w-full h-full border-0"
-             scrolling="no"
-           />
-        </div>
+        <div ref={containerRef} className="w-full flex justify-center h-[250px] relative" />
       )}
     </div>
   );
