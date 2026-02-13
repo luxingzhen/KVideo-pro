@@ -133,7 +133,6 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
              title="Ad"
              className="w-full h-full border-0"
              scrolling="no"
-             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
            />
         </div>
       )}
