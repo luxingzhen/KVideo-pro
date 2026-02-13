@@ -36,57 +36,30 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
   }, [type]);
 
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const iframeRef = React.useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    if (containerRef.current && adContent) {
+    if (iframeRef.current && adContent) {
       try {
-        const container = containerRef.current;
-        // Reset container
-        container.innerHTML = '';
-        
-        // Create a temp div to parse the HTML string
-        const tempDiv = document.createElement('div');
-        tempDiv.innerHTML = adContent;
-        
-        // Helper function to recursively reconstruct scripts
-        const reconstructScripts = (node: Node): Node => {
-          if (node.nodeName === 'SCRIPT') {
-            const oldScript = node as HTMLScriptElement;
-            const newScript = document.createElement('script');
-            
-            // Copy attributes
-            Array.from(oldScript.attributes).forEach(attr => {
-              newScript.setAttribute(attr.name, attr.value);
-            });
-            
-            // Copy content
-            if (oldScript.innerHTML) {
-              newScript.innerHTML = oldScript.innerHTML;
-            }
-            return newScript;
-          }
-          
-          // Clone the node
-          const clonedNode = node.cloneNode(false);
-          
-          // Process children recursively
-          Array.from(node.childNodes).forEach(child => {
-            clonedNode.appendChild(reconstructScripts(child));
-          });
-          
-          return clonedNode;
-        };
-
-        // Process and append all child nodes
-        Array.from(tempDiv.childNodes).forEach((node) => {
-          container.appendChild(reconstructScripts(node));
-        });
-      } catch (e) {
-        console.error('Error executing ad scripts:', e);
-        // Fallback to dangerouslySetInnerHTML if manual parsing fails
-        if (containerRef.current) {
-          containerRef.current.innerHTML = adContent;
+        const doc = iframeRef.current.contentDocument || iframeRef.current.contentWindow?.document;
+        if (doc) {
+          doc.open();
+          doc.write(`
+            <!DOCTYPE html>
+            <html>
+              <head>
+                <style>
+                  body { margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; background: transparent; }
+                  img { max-width: 100%; height: auto; }
+                </style>
+              </head>
+              <body>${adContent}</body>
+            </html>
+          `);
+          doc.close();
         }
+      } catch (e) {
+        console.error('Error writing to ad iframe:', e);
       }
     }
   }, [adContent]);
@@ -97,12 +70,6 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
   const showPlaceholder = !adContent;
   
   // If no content and not a placeholder (e.g. production mode without ads), hide completely
-  // But wait, the previous behavior was to show placeholder if no content.
-  // The user requirement is: "Update AdSlot to hide when content is missing (unless admin)"
-  // Since we don't have easy admin context here, let's assume if adContent is empty string, we hide it.
-  // However, for debugging, placeholders are useful. 
-  // Let's hide it if adContent is empty, UNLESS we are in development mode or explicitly want placeholders.
-  // Actually, standard behavior for ad slots is to collapse if empty.
   if (!adContent) return null;
 
   const handleClose = (e: React.MouseEvent) => {
@@ -123,13 +90,21 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
             </button>
           )}
         </div>
-        <div className="flex items-center justify-center min-h-[90px]">
+        <div className="flex items-center justify-center min-h-[90px] overflow-hidden">
           {showPlaceholder ? (
             <div className="h-24 w-full bg-gradient-to-r from-green-500/20 to-blue-500/20 rounded-lg flex items-center justify-center border border-white/5">
               <p className="text-white/80 font-medium">播放器上方横幅 (建议 728x90)</p>
             </div>
           ) : (
-            <div ref={containerRef} className="w-full flex justify-center" />
+            <div className="w-full flex justify-center h-[90px] relative">
+               <iframe 
+                 ref={iframeRef} 
+                 title="Ad"
+                 className="w-full h-full border-0"
+                 scrolling="no"
+                 sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+               />
+            </div>
           )}
         </div>
       </div>
@@ -153,7 +128,15 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
           <p className="text-white/80 font-medium">侧边栏广告位 (300x250)</p>
         </div>
       ) : (
-        <div ref={containerRef} className="w-full flex justify-center" />
+        <div className="w-full flex justify-center h-[250px] relative">
+           <iframe 
+             ref={iframeRef} 
+             title="Ad"
+             className="w-full h-full border-0"
+             scrolling="no"
+             sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+           />
+        </div>
       )}
     </div>
   );
