@@ -48,6 +48,7 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
             <!DOCTYPE html>
             <html>
               <head>
+                <meta name="referrer" content="unsafe-url">
                 <style>
                   body { margin: 0; padding: 0; overflow: hidden; display: flex; justify-content: center; align-items: center; background: transparent; }
                   img { max-width: 100%; height: auto; }
