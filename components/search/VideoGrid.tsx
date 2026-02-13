@@ -6,6 +6,7 @@ import { VideoCard } from './VideoCard';
 import { VideoGroupCard, GroupedVideo } from './VideoGroupCard';
 import { settingsStore } from '@/lib/store/settings-store';
 import { Video } from '@/lib/types';
+import { AdSlot } from '@/components/ads/AdSlot';
 
 interface VideoGridProps {
   videos: Video[];
@@ -181,22 +182,39 @@ export const VideoGrid = memo(function VideoGrid({
             );
           })
         ) : (
-          // Normal mode
-          videoItems.slice(0, visibleCount).map(({ video, videoUrl, cardId }) => {
-            const isActive = activeCardId === cardId;
-            return (
-              <VideoCard
-                key={cardId}
-                video={video}
-                videoUrl={videoUrl}
-                cardId={cardId}
-                isActive={isActive}
-                onCardClick={handleCardClick}
-                isPremium={isPremium}
-                latencies={latencies}
-              />
-            );
-          })
+          // Normal mode with interleaved ads
+          (() => {
+            const items = [];
+            const slicedVideos = videoItems.slice(0, visibleCount);
+            
+            for (let i = 0; i < slicedVideos.length; i++) {
+              const { video, videoUrl, cardId } = slicedVideos[i];
+              const isActive = activeCardId === cardId;
+              
+              items.push(
+                <VideoCard
+                  key={cardId}
+                  video={video}
+                  videoUrl={videoUrl}
+                  cardId={cardId}
+                  isActive={isActive}
+                  onCardClick={handleCardClick}
+                  isPremium={isPremium}
+                  latencies={latencies}
+                />
+              );
+
+              // Insert ad after every 6 items (index 5, 11, 17...)
+              if ((i + 1) % 6 === 0) {
+                items.push(
+                  <div key={`ad-${i}`} className="col-span-full md:hidden w-full my-2">
+                    <AdSlot type="banner" />
+                  </div>
+                );
+              }
+            }
+            return items;
+          })()
         )}
       </div>
 

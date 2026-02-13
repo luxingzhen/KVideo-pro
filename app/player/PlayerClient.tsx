@@ -15,6 +15,7 @@ import { FavoriteButton } from '@/components/favorites/FavoriteButton';
 import { PlayerNavbar } from '@/components/player/PlayerNavbar';
 import { settingsStore } from '@/lib/store/settings-store';
 import { SegmentedControl } from '@/components/ui/SegmentedControl';
+import { AdSlot } from '@/components/ads/AdSlot';
 import { CommunityCard } from '@/components/community/CommunityCard';
 import { RetentionPopup } from '@/components/community/RetentionPopup';
 import { useFavorites } from '@/lib/store/favorites-store';
@@ -205,6 +206,9 @@ function PlayerContent() {
           <div className="grid lg:grid-cols-3 gap-6">
             {/* Video Player Section */}
             <div className="lg:col-span-2 space-y-6">
+              {/* Player Top Ad */}
+              <AdSlot type="player-top" />
+              
               <VideoPlayer
                 playUrl={playUrl}
                 videoId={videoId || undefined}
@@ -312,6 +316,9 @@ function PlayerContent() {
             {/* Sidebar with sticky wrapper */}
             <div className="lg:col-span-1">
               <div className="lg:sticky lg:top-32 space-y-6">
+                {/* Banner Ad */}
+                <AdSlot type="banner" />
+                
                 <CommunityCard />
 
                 {/* Mobile Tabs */}

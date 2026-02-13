@@ -10,7 +10,6 @@ import { DesktopControlsWrapper } from './desktop/DesktopControlsWrapper';
 import { DesktopOverlayWrapper } from './desktop/DesktopOverlayWrapper';
 import { usePlayerSettings } from './hooks/usePlayerSettings';
 import { useIsIOS } from '@/lib/hooks/mobile/useDeviceDetection';
-import { AdSlot } from '@/components/ads/AdSlot';
 import './web-fullscreen.css';
 
 interface DesktopVideoPlayerProps {

@@ -94,6 +94,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { MobileStickyAd } from "@/components/ads/MobileStickyAd";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -115,6 +117,7 @@ export default function RootLayout({
             {children}
             <BackToTop />
             <ScrollPositionManager />
+            <MobileStickyAd />
           </PasswordGate>
           <Analytics />
           <ServiceWorkerRegister />

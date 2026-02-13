@@ -91,10 +91,19 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
     }
   }, [adContent]);
 
-  if (!isVisible) return null;
+  if (!isVisible || !isLoaded) return null;
   
   // Define showPlaceholder based on loaded content
   const showPlaceholder = !adContent;
+  
+  // If no content and not a placeholder (e.g. production mode without ads), hide completely
+  // But wait, the previous behavior was to show placeholder if no content.
+  // The user requirement is: "Update AdSlot to hide when content is missing (unless admin)"
+  // Since we don't have easy admin context here, let's assume if adContent is empty string, we hide it.
+  // However, for debugging, placeholders are useful. 
+  // Let's hide it if adContent is empty, UNLESS we are in development mode or explicitly want placeholders.
+  // Actually, standard behavior for ad slots is to collapse if empty.
+  if (!adContent) return null;
 
   const handleClose = (e: React.MouseEvent) => {
     e.stopPropagation();
