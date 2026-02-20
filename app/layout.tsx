@@ -92,6 +92,13 @@ export const metadata: Metadata = {
     title: siteConfig.title,
     description: siteConfig.description,
   },
+  verification: {
+    google: 'Hl1WbrL7YPzVjDWXWBPWBTC_-xVTA_qdfX8FqzkYewU',
+    other: {
+      'baidu-site-verification': 'codeva-jPrLfh7ATW',
+      'sogou_site_verification': 'B721NSZLuA',
+    },
+  },
 };
 
 import { MobileStickyAd } from "@/components/ads/MobileStickyAd";
