@@ -1,0 +1,123 @@
+export default {
+  async fetch(request, env, ctx) {
+    // 默认的最新地址，如果环境变量 LATEST_URL 未设置，则使用此地址
+    // 你可以在 Cloudflare Workers 后台设置环境变量 LATEST_URL 来动态修改
+    const latestUrl = env.LATEST_URL || "https://tv.srfwq.top";
+    
+    // 图标地址 (你可以替换为你的图床地址)
+    const iconUrl = "https://tv.srfwq.top/icon.png";
+
+    const html = `
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KVideo - 最新地址发布页</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #3b82f6;
+            --glass-bg: rgba(30, 41, 59, 0.7);
+            --glass-border: rgba(148, 163, 184, 0.1);
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+        .container {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1.5rem;
+            border-radius: 50%;
+            background: #fff;
+            padding: 10px;
+            box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+            object-fit: contain;
+        }
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        p {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: white;
+            text-decoration: none;
+            padding: 12px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.5);
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.6);
+        }
+        .footer {
+            margin-top: 2rem;
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 尝试加载远程图标，如果失败则使用占位 -->
+        <img src="${iconUrl}" alt="KVideo" class="logo" onerror="this.style.display='none'">
+        <h1>KVideo 最新地址</h1>
+        <p>如果原来的域名无法访问，请收藏此页面。<br>我们将在这里更新最新的访问地址。</p>
+        <a href="${latestUrl}" id="latest-link" class="btn">点击跳转最新地址</a>
+        
+        <div class="footer">
+            <p>请按 Ctrl+D 收藏本页</p>
+            <p style="margin-top: 10px; opacity: 0.6; font-size: 12px;">当前指向: ${latestUrl}</p>
+        </div>
+    </div>
+
+    <script>
+        // 自动跳转逻辑 (可选)
+        // const autoRedirect = false;
+        // if (autoRedirect) {
+        //    setTimeout(() => {
+        //        window.location.href = "${latestUrl}";
+        //    }, 3000);
+        // }
+    </script>
+</body>
+</html>
+    `;
+
+    return new Response(html, {
+      headers: {
+        "content-type": "text/html;charset=UTF-8",
+      },
+    });
+  },
+};

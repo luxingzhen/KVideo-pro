@@ -1,0 +1,22 @@
+{
+  "name": "twitter-bot-skill",
+  "version": "1.0.0",
+  "description": "Automated Twitter interactions using Playwright",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "twitter",
+    "automation",
+    "playwright",
+    "bot"
+  ],
+  "author": "KVideo Team",
+  "license": "ISC",
+  "dependencies": {
+    "playwright": "^1.40.0",
+    "dotenv": "^16.3.1"
+  }
+}
