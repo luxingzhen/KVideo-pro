@@ -78,7 +78,7 @@ export function AdSlot({ type, className = '', onClose }: AdSlotProps) {
 
   if (type === 'player-top') {
     return (
-      <div className={`w-full bg-white/5 border border-white/10 rounded-xl p-4 mb-6 ${className}`}>
+      <div className={`w-full bg-white/5 border border-white/10 rounded-none md:rounded-xl p-2 sm:p-4 mb-2 sm:mb-6 ${className}`}>
         <div className="flex justify-between items-center mb-2">
           <span className="text-xs text-white/40">赞助商内容</span>
           {onClose && (

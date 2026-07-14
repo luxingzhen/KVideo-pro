@@ -190,7 +190,7 @@ function PlayerContent() {
         onFavorite={handleQuickFavorite}
       />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <main className="max-w-7xl mx-auto px-0 sm:px-6 lg:px-8 pb-4 sm:pb-20">
         {loading ? (
           <div className="flex flex-col items-center justify-center py-20">
             <div className="animate-spin rounded-full h-16 w-16 border-4 border-[var(--accent-color)] border-t-transparent mb-4"></div>
@@ -203,9 +203,9 @@ function PlayerContent() {
             onRetry={fetchVideoDetails}
           />
         ) : (
-          <div className="grid lg:grid-cols-3 gap-6">
+          <div className="grid lg:grid-cols-3 gap-2 sm:gap-6">
             {/* Video Player Section */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-2 sm:space-y-6">
               {/* Player Top Ad */}
               <AdSlot type="player-top" />
               

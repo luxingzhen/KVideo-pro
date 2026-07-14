@@ -201,7 +201,7 @@ export function VideoPlayer({
   }
 
   return (
-    <Card hover={false} className="p-0 relative">
+    <Card hover={false} className="p-0 relative rounded-none border-0 md:rounded-[var(--radius-2xl)] md:border md:border-[var(--glass-border)]">
       {/* Mode Indicator Badge - controlled by settings */}
       {showModeIndicator && (
         <div className="absolute top-3 right-3 z-30">
