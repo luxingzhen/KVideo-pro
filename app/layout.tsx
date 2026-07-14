@@ -126,9 +126,9 @@ export default function RootLayout({
   `}
 </Script>
         {process.env.NEXT_PUBLIC_ADSENSE_ID && (
-          <Script
+          <script
+            async
             src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.NEXT_PUBLIC_ADSENSE_ID}`}
-            strategy="afterInteractive"
             crossOrigin="anonymous"
           />
         )}
